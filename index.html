@@ -1,13 +1,17 @@
 <html>
 <head>
-<meta name="viewport" content="user-scalable=no,shrink-to-fit=no">
+
 </head>
 <body>
 <script src="processing.js"></script>
 <script type="text/processing" data-processing-target="processing-canvas">
 
 void setup() {
+<<<<<<< HEAD
   size(1000, 1600);
+=======
+  size(950, 1600);
+>>>>>>> parent of 79968b3... 11
 }
  
 int gameState = 0;
@@ -42,7 +46,7 @@ void draw() {
     fill(200);
     text(counter, 400, 400);
     textSize(25);
-    text("touch to Restart", 400, 300);
+    text("Press Any Key to Restart", 400, 300);
     if (counter > 10) {
       gameState = 2;
     }
@@ -59,7 +63,7 @@ void draw() {
     fill(200);
     text("Clicks Per Second (CPS):", 400, 1000);
     textSize(25);
-    text("touch to Restart", 400, 300);
+    text("Press Any Key to Restart", 400, 300);
     cps = score/10;
     text(cps, 400, 1050);
     if (keyPressed) {
