@@ -5,7 +5,7 @@
 <script type="text/processing" data-processing-target="processing-canvas">
 
 void setup() {
-  size(950, 1600);
+  size(900, 1600);
 }
  
 int gameState = 0;
@@ -40,7 +40,7 @@ void draw() {
     fill(200);
     text(counter, 400, 400);
     textSize(25);
-    text("Press Any Key to Restart", 400, 300);
+    text("touch to Restart", 400, 300);
     if (counter > 10) {
       gameState = 2;
     }
@@ -57,7 +57,7 @@ void draw() {
     fill(200);
     text("Clicks Per Second (CPS):", 400, 1000);
     textSize(25);
-    text("Press Any Key to Restart", 400, 300);
+    text("touch to Restart", 400, 300);
     cps = score/10;
     text(cps, 400, 1050);
     if (keyPressed) {
