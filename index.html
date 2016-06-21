@@ -5,75 +5,73 @@
 <script src="processing.js"></script>
 <script type="text/processing" data-processing-target="processing-canvas">
 
+final float g = 0.1;
+Body bs[];
+
 void setup() {
-  size(950, 1600);
+  size(900, 500, P2D);
+  colorMode(HSB, 1);
+  background(0);
+  fill(0, 0.25);
+  cursor(CROSS);
+  
+  bs = new Body[500];
+  for (int i = 0; i < bs.length; i++) {
+    bs[i] = new Body(1, new PVector(random(width), random(height)));
+  }
 }
- 
-int gameState = 0;
-int score = 0;
-float counter;
-float cps;
- 
+
 void draw() {
-  background(240);
   noStroke();
-  int c = 50+(score*2);
-  fill(0, 100, 255, c);
-  ellipse(400, 700, 475, 475);
-  if (gameState == 0) {
-    textAlign(CENTER, CENTER);
-    fill(240);
-    textSize(40);
-    text("Click to Begin", 400, 700);
-    if (mousePressed) {
-      gameState = 1;
-      counter = 0;
-      score = 0;
-    }
-  }
-  if (gameState == 1) {
-    counter=counter+0.0183;
-    textAlign(CENTER, CENTER);
-    fill(240);
-    textSize(200);
-    text(score, 400, 700);
-    textSize(50);
-    fill(200);
-    text(counter, 400, 400);
-    textSize(25);
-    text("touch to Restart", 400, 300);
-    if (counter > 10) {
-      gameState = 2;
-    }
-    if (keyPressed) {
-      gameState = 0;
-    }
-  }
-  if (gameState == 2) {
-    textAlign(CENTER, CENTER);
-    fill(240);
-    textSize(200);
-    text(score, 400, 700);
-    textSize(25);
-    fill(200);
-    text("Clicks Per Second (CPS):", 400, 1000);
-    textSize(25);
-    text("touch to Restart", 400, 300);
-    cps = score/10;
-    text(cps, 400, 1050);
-    if (keyPressed) {
-      gameState = 0;
-      counter = 0;
-      score = 0;
-    }
+  rect(0, 0, width, height);
+  
+  for (int i = 0; i < bs.length; i++) {
+    stroke(0.0002 * i,  0.5, 1);
+    Body b = bs[i];
+    b.show();
+    float r = 100 * sin(frameCount * 0.05);
+    float a = sin(frameCount * 0.005) * TWO_PI;
+    b.attract(new Body(-1000, new PVector(mouseX + r * cos(a), mouseY + r * sin(a))));
+    r = 100 * sin(frameCount * 0.03);
+    a = 1 + sin(frameCount * 0.005) * TWO_PI;
+    b.attract(new Body(1000, new PVector(mouseX + r * sin(a), mouseY + r * cos(a))));
+    r = 100 * sin(frameCount * 0.01);
+    a = 2 + sin(frameCount * 0.005) * TWO_PI;
+    b.attract(new Body(1000, new PVector(mouseX + r * sin(a), mouseY + r * cos(a))));
+    b.update();
   }
 }
- 
-void mouseReleased() {
-  if (gameState == 1) {
-    score++;
+
+class Body {
+  float m;
+  PVector p, q, s;
+  
+  Body(float m, PVector p) {
+    this.m = m;
+    this.p = p;
+    q = p;
+    this.s = new PVector(0, 0);
   }
-}</script>
+  
+  void update() {
+    s.mult(0.98);
+    p = PVector.add(p, s);
+  }
+  
+  void attract(Body b) {
+    float d = constrain(PVector.dist(p, b.p), 10, 100);
+    PVector f = PVector.mult(PVector.sub(b.p, p), b.m * m * g / (d * d));
+    PVector a = PVector.div(f, m);
+    s.add(a);
+  }
+  
+  void show() {
+    line(p.x, p.y, q.x, q.y);
+    q = p;
+  }
+}
+
+</script>
 <canvas id="processing-canvas"> </canvas>
 </body>
 </html>
