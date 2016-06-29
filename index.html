@@ -11,72 +11,32 @@
 <script src="processing.js"></script>
 <script type="text/processing" data-processing-target="processing-canvas">
 
-ArrayList<Mover> movers;
+ArrayList<PVector> positions;
  
 void setup(){
-  size(1000, 1600);
-  frameRate(120);
+  size(1000, 1300);
+  frameRate(30);
   background(0);
-  movers = new ArrayList<Mover>();
-  for(int i = 0; i < 30; i++){
-    movers.add(new Mover());
-  }
-  background(255);
-  colorMode(HSB, 360, 100, 100);
+  stroke(255, 100);
+   
+  positions = new ArrayList<PVector>();
+   
 }
  
 void draw(){
-  translate(width / 2, height / 2);
-  for(int i = 0; i < movers.size() - 1; i++){
-    Mover m1 = movers.get(i);
-    for(int j = i + 1; j < movers.size(); j++){
-      Mover m2 = movers.get(j);
-      float hue = (m1.hue + m2.hue) / 2.0;
-      float saturation = (m1.saturation + m2.saturation) / 2.0;
-      stroke(hue, saturation, 100, 10);
-      line(m1.getX(), m1.getY(), m2.getX(), m2.getY());
+  if(mousePressed){
+    float x = mouseX + map(random(1), 0, 1, -30, 30);
+    float y = mouseY + map(random(1), 0, 1, -30, 30);
+    PVector newPos = new PVector(x, y);
+    for(PVector pos : positions){
+      if(PVector.dist(newPos, pos) < 50){
+        line(newPos.x, newPos.y, pos.x, pos.y);
+      }
     }
-  }
-  for(Mover m: movers){
-    m.update();
+    positions.add(newPos);
   }
 }
- 
-class Mover{
-   
-  PVector center;
-  float radious, radian, speed;
-  float hue, saturation;
-   
-  Mover(){
-    float cRad = random(0, width);
-    float cAng = random(TWO_PI);
-    center = new PVector(cRad * cos(cAng), cRad * sin(cAng));
-    radious = random(50, 200);
-    radian = random(TWO_PI);
-    speed = random(-PI / 128, PI / 128);
-    hue = random(180, 240);
-    saturation = random(100);
-  }
-   
-  void update(){
-    radian += speed;
-    if(radian < 0){
-      radian += TWO_PI;
-    }
-    if(radian > TWO_PI){
-      radian -= TWO_PI;
-    }
-  }
-   
-  float getX(){
-    return center.x + radious * cos(radian);
-  }
-   
-  float getY(){
-    return center.y + radious * sin(radian);
-  }
-}
+
 
 
 </script>
