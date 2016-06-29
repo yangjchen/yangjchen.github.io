@@ -25,11 +25,11 @@ void setup(){
  
 void draw(){
   if(mousePressed){
-    float x = mouseX + map(random(1), 0, 1, -30, 30);
-    float y = mouseY + map(random(1), 0, 1, -30, 30);
+    float x = mouseX + map(random(1), 0, 1, -60, 60);
+    float y = mouseY + map(random(1), 0, 1, -60, 60);
     PVector newPos = new PVector(x, y);
     for(PVector pos : positions){
-      if(PVector.dist(newPos, pos) < 50){
+      if(PVector.dist(newPos, pos) < 80){
         line(newPos.x, newPos.y, pos.x, pos.y);
       }
     }
