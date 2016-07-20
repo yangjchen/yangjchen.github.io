@@ -1,47 +1,50 @@
+<!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8" /> 
-</head>
-<body>
-<style> 
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
+	<title>小动画</title>
+	<style>
+		html {
+			height:100%;
+		}
+		body {
+			background-color: #FFFFFF;
+			margin:0;
+			height:100%;
+		}
+	</style>
 
-</style>
-<div id="main">
-  <div align="center">
-<script src="processing.js"></script>
-<script type="text/processing" data-processing-target="processing-canvas">
+	<!-- copy these lines to your document head: -->
 
-ArrayList<PVector> positions;
- 
-void setup(){
-  size(1000, 1600);
-  frameRate(120);
-  background(0);
-  stroke(255, 100);
-   
-  positions = new ArrayList<PVector>();
-   
-}
- 
-void draw(){
-  if(mousePressed){
-    float x = mouseX + map(random(1), 0, 1, -60, 60);
-    float y = mouseY + map(random(1), 0, 1, -60, 60);
-    PVector newPos = new PVector(x, y);
-    for(PVector pos : positions){
-      if(PVector.dist(newPos, pos) < 80){
-        line(newPos.x, newPos.y, pos.x, pos.y);
-      }
-    }
-    positions.add(newPos);
-  }
-}
+	<meta name="viewport" content="user-scalable=yes, width=600" />
 
 
+	<!-- end copy -->
 
-</script>
-<canvas id="processing-canvas"> </canvas>
-  </div>
-</div>
-</body>
+  </head>
+  <body>
+	
+	<!-- copy these lines to your document: -->
+
+	<div id="小动画_hype_container" style="margin:auto;position:relative;width:600px;height:400px;overflow:hidden;" aria-live="polite">
+		<script type="text/javascript" charset="utf-8" src="%E5%B0%8F%E5%8A%A8%E7%94%BB.hyperesources/%E5%B0%8F%E5%8A%A8%E7%94%BB_hype_generated_script.js?66894"></script>
+	</div>
+
+	<!-- end copy -->
+
+
+	
+
+
+	<!-- text content for search engines: -->
+
+	<div style="display:none">
+
+
+	</div>
+
+	<!-- end text content: -->
+
+  </body>
 </html>
