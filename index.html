@@ -1,50 +1,33 @@
-<!DOCTYPE html>
 <html>
-  <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
-	<title>小动画</title>
-	<style>
-		html {
-			height:100%;
-		}
-		body {
-			background-color: #FFFFFF;
-			margin:0;
-			height:100%;
-		}
-	</style>
+<head>
+  <meta charset="utf-8" /> 
+</head>
+<body>
+<style> 
 
-	<!-- copy these lines to your document head: -->
+</style>
+<div id="main">
+  <div align="center">
+<script src="processing.js"></script>
+<script type="text/processing" data-processing-target="processing-canvas">
 
-	<meta name="viewport" content="user-scalable=yes, width=600" />
+void setup() {
+  size(640, 360);
+  background(102);
+}
 
-
-	<!-- end copy -->
-
-  </head>
-  <body>
-	
-	<!-- copy these lines to your document: -->
-
-	<div id="小动画_hype_container" style="margin:auto;position:relative;width:600px;height:400px;overflow:hidden;" aria-live="polite">
-		<script type="text/javascript" charset="utf-8" src="%E5%B0%8F%E5%8A%A8%E7%94%BB.hyperesources/%E5%B0%8F%E5%8A%A8%E7%94%BB_hype_generated_script.js?66894"></script>
-	</div>
-
-	<!-- end copy -->
+void draw() {
+  stroke(255);
+  if (mousePressed == true) {
+    line(mouseX, mouseY, pmouseX, pmouseY);
+  }
+}
 
 
-	
 
-
-	<!-- text content for search engines: -->
-
-	<div style="display:none">
-
-
-	</div>
-
-	<!-- end text content: -->
-
-  </body>
+</script>
+<canvas id="processing-canvas"> </canvas>
+  </div>
+</div>
+</body>
 </html>
