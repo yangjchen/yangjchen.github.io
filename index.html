@@ -1,33 +1,37 @@
-<html>
+<!DOCTYPE html>
+<html lang="en" >
+
 <head>
-  <meta charset="utf-8" /> 
+  <meta charset="UTF-8">
+  <title>holy running cow</title>
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+  
+      <link rel="stylesheet" href="css/style.css">
+
+  
 </head>
+
 <body>
-<style> 
 
-</style>
-<div id="main">
-  <div align="center">
-<script src="processing.js"></script>
-<script type="text/processing" data-processing-target="processing-canvas">
+  <div id="world"></div>
+<div id="instructions">Press and drag <br><span class="lightInstructions">to rotate the scene</span></div>
 
-void setup() {
-  size(640, 360);
-  background(102);
-}
-
-void draw() {
-  stroke(255);
-  if (mousePressed == true) {
-    line(mouseX, mouseY, pmouseX, pmouseY);
-  }
-}
-
-
-
-</script>
-<canvas id="processing-canvas"> </canvas>
-  </div>
+<div id="credits">
+  <p> <a href="https://codepen.io/Yakudoo/"  target="blank">my other codepens</a> | <a href="https://epic.net" target="blank">www.epic.net</a></p>
 </div>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/three.js/r70/three.min.js'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/264161/OrbitControls.js'></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/TweenMax.min.js'></script>
+
+  
+
+    <script  src="js/index.js"></script>
+
+
+
+
 </body>
+
 </html>
